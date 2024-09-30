@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Location Finder</title>
+</head>
+<body>
+    <h1>Find Location by IP Address</h1>
+    <form id="ipForm">
+        <input type="text" id="ipInput" placeholder="Enter IP address" required>
+        <button type="submit">Find Location</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('ipForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const ip = document.getElementById('ipInput').value;
+            const response = await fetch(`/location?ip=${ip}`);
+            const data = await response.json();
+            document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+        });
+    </script>
+</body>
+</html>
